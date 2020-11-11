@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script id="vertex-shader" type="x-shader/x-vertex">
+    precision mediump float;
+    attribute vec3 vPosition;
+    varying vec4 fColor;
+    uniform mat4 uViewMatrix;
+
+    void main()
+    {
+        float l = 1.0;
+        vec3 a = vec3(0.0 * l, 0.0 * l, sqrt(6.0) / 4.0 * l);
+        vec3 b = vec3(sqrt(3.0) / 6.0 * l, -1.0 / 2.0 * l, -sqrt(6.0) / 12.0 * l);
+        vec3 c = vec3(sqrt(3.0) / 6.0 * l, 1.0 / 2.0 * l, -sqrt(6.0) / 12.0 * l);
+        vec3 d = vec3(-sqrt(3.0) / 3.0 * l, 0.0 * l, -sqrt(6.0) / 12.0 * l);
+        fColor[0] = distance(vPosition, a) / 2.0;
+        fColor[1] = distance(vPosition, b) / 2.0;
+        fColor[2] = distance(vPosition, c) / 2.0;
+        fColor[3] = 0.7;
+        gl_Position = uViewMatrix * vec4(vPosition, 1.0);
+    }
+    </script>
+
+    <script id="fragment-shader" type="x-shader/x-fragment">
+    precision mediump float;
+    varying vec4 fColor;
+
+    void main()
+    {
+        //gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
+        gl_FragColor = fColor;
+    }
+    </script>
+
+    <script src="../Common/webgl-utils.js"></script>
+    <script src="../Common/initShaders.js"></script>
+    <script src="../Common/MV.js"></script>
+    <script src="./tetrahedron.js"></script>
+</head>
+
+<body>
+    <div>
+        <div>
+            <span>x</span>
+            <input id="x-range" type="range" min="0" max="100" value="0" oninput="rotateHandle()" />
+        </div>
+        <div>
+            <span>y</span>
+            <input id="y-range" type="range" min="0" max="100" value="0" oninput="rotateHandle()" />
+        </div>
+        <div>
+            <span>z</span>
+            <input id="z-range" type="range" min="0" max="100" value="0" oninput="rotateHandle()" />
+        </div>
+    </div>
+    <canvas id="gl-canvas" width="800" height="800">
+        Oops ... your browser doesn't support the HTML5 canvas element
+    </canvas>
+</body>
+
+</html>
