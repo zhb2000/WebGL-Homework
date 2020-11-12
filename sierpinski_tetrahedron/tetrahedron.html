@@ -4,9 +4,9 @@
 <head>
     <script id="vertex-shader" type="x-shader/x-vertex">
     precision mediump float;
-    attribute vec3 vPosition;
-    varying vec4 fColor;
-    uniform mat4 uViewMatrix;
+    attribute vec3 vPosition; //顶点坐标
+    varying vec4 fColor; //顶点颜色
+    uniform mat4 uViewMatrix; //旋转矩阵
 
     void main()
     {
@@ -25,7 +25,7 @@
 
     <script id="fragment-shader" type="x-shader/x-fragment">
     precision mediump float;
-    varying vec4 fColor;
+    varying vec4 fColor; //顶点颜色
 
     void main()
     {

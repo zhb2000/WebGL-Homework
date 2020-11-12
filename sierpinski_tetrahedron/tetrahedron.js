@@ -6,6 +6,8 @@ let program;
 let points = [];
 
 /**
+ * 画四面体，每个面 3 个点，放到 points 里
+ * 
  * @param {number[]} a 
  * @param {number[]} b 
  * @param {number[]} c 
@@ -19,6 +21,8 @@ function tetrahedron(a, b, c, d) {
 }
 
 /**
+ * 细分四面体
+ * 
  * @param {number[]} a 
  * @param {number[]} b 
  * @param {number[]} c 
@@ -130,6 +134,7 @@ function init() {
     gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
     gl.bufferData(gl.ARRAY_BUFFER, flatten(points), gl.STATIC_DRAW);
 
+    //获取变量 vPosition 的位置
     let vPositionLoc = gl.getAttribLocation(program, 'vPosition');
     gl.vertexAttribPointer(vPositionLoc, 3, gl.FLOAT, false, 0, 0);
     gl.enableVertexAttribArray(vPositionLoc);
@@ -142,6 +147,9 @@ function render() {
     gl.drawArrays(gl.TRIANGLES, 0, points.length);
 }
 
+/**
+ * 滑杆变化的回调函数
+ */
 function rotateHandle() {
     let x = document.getElementById('x-range').value;
     let y = document.getElementById('y-range').value;
@@ -150,6 +158,7 @@ function rotateHandle() {
     y = y / 100 * Math.PI;
     z = z / 100 * Math.PI;
 
+    //获取 uViewMatrix 变量的位置
     let uViewMatrixLoc = gl.getUniformLocation(program, 'uViewMatrix');
     let viewMatrix = [
         [1, 0, 0, 0],
