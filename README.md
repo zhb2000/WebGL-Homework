@@ -4,3 +4,4 @@
 1. [谢尔宾斯基三角形（递归）](https://zhb2000.github.io/WebGL-Homework/sierpinski_recursive/triangle.html)
 1. [谢尔宾斯基四面体](https://zhb2000.github.io/WebGL-Homework/sierpinski_tetrahedron/tetrahedron.html)
 1. [画一个球面](https://zhb2000.github.io/WebGL-Homework/sphere/sphere.html)
+1. [俄罗斯方块](https://zhb2000.github.io/WebGL-Homework/tetris/tetris.html)

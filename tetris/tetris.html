@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tetris</title>
+
+    <style>
+        .border {
+            border: solid 1px black;
+        }
+    </style>
+
+    <script id="vertex-shader" type="x-shader/x-vertex">
+        attribute vec2 vPosition;
+    
+        void main()
+        {
+            gl_Position = vec4(vPosition, 0.0, 1.0);
+        }
+    </script>
+
+    <script id="fragment-shader" type="x-shader/x-fragment">
+        precision mediump float;
+        varying vec4 fColor;
+    
+        void main()
+        {
+            gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
+        }
+    </script>
+
+    <script src="../Common/webgl-utils.js"></script>
+    <script src="../Common/initShaders.js"></script>
+    <script src="../Common/MV.js"></script>
+    <script src="./tetromino.js"></script>
+    <script src="./tetris.js"></script>
+</head>
+
+<body>
+    <canvas id="gl-canvas" width="500" height="500">
+        Oops ... your browser doesn't support the HTML5 canvas element
+    </canvas>
+    <div>
+        <button onclick="moveLeftBtnClick()">left</button>
+        <button onclick="moveRightBtnClick()">right</button>
+        <button onclick="rotateBtnClick()">rotate</button>
+        <button onclick="moveToBottomBtnClick()">bottom</button>
+        <button onclick="nextTick()">next</button>
+        <button onclick="startBtnClick()">start</button>
+    </div>
+</body>
+
+</html>
