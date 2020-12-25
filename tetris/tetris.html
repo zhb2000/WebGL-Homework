@@ -6,12 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tetris</title>
 
-    <style>
-        .border {
-            border: solid 1px black;
-        }
-    </style>
-
     <script id="vertex-shader" type="x-shader/x-vertex">
         attribute vec2 vPosition; //顶点坐标
         attribute vec4 vColor; //顶点颜色
@@ -39,19 +33,38 @@
     <script src="../Common/MV.js"></script>
     <script src="./tetromino.js"></script>
     <script src="./tetris.js"></script>
+
+    <style>
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        .button {
+            margin: 10px 5px;
+            height: 50px;
+            font-size: 16px;
+        }
+    </style>
 </head>
 
 <body>
-    <canvas id="gl-canvas" width="600" height="600">
-        Oops ... your browser doesn't support the HTML5 canvas element
-    </canvas>
-    <div>
-        <button onclick="moveLeftBtnClick()">left</button>
-        <button onclick="moveRightBtnClick()">right</button>
-        <button onclick="rotateBtnClick()">rotate</button>
-        <button onclick="moveToBottomBtnClick()">bottom</button>
-        <button onclick="nextTick()">next</button>
-        <button onclick="startBtnClick()">start</button>
+    <div class="container">
+        <canvas id="gl-canvas" width="570" height="570">
+            Oops ... your browser doesn't support the HTML5 canvas element
+        </canvas>
+        <div>
+            <button class="button" onclick="moveLeftBtnClick()">向左(←)</button>
+            <button class="button" onclick="moveRightBtnClick()">向右(→)</button>
+            <button class="button" onclick="rotateBtnClick()">旋转(space)</button>
+            <button class="button" onclick="moveToBottomBtnClick()">到底(↓)</button>
+        </div>
+        <div>
+            <button style="display: none" onclick="nextTick()">next</button>
+            <button class="button" id="start-btn" onclick="startBtnClick()">开始游戏</button>
+        </div>
     </div>
 </body>
 

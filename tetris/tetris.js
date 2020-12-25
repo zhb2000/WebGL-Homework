@@ -197,15 +197,15 @@ function removeFullRows() {
     }
 }
 
-function nextTick() {
-    function isHitTop() {
-        let minX = 100;
-        for (let [x, _] of currentTetromino.getCoords()) {
-            minX = Math.min(minX, x);
-        }
-        return minX <= 0;
+function isHitTop() {
+    let minX = 100;
+    for (let [x, _] of currentTetromino.getCoords()) {
+        minX = Math.min(minX, x);
     }
+    return !canMoveDown() && minX <= 0;
+}
 
+function nextTick() {
     if (canMoveDown()) {
         clearToZero();
         currentTetromino.moveDown();
@@ -361,7 +361,12 @@ function moveToBottomBtnClick() {
     setTimeout(() => {
         removeFullRows();
         drawMatrix();
-        setNewRandTetromino();
+        if (isHitTop()) {
+            clearInterval(gameTimer);
+            alert('You lose.');
+        } else {
+            setNewRandTetromino();
+        }
     }, 300);
 }
 
@@ -426,6 +431,21 @@ function drawBackground() {//TODO
 
 function startBtnClick() {
     gameTimer = setInterval(nextTick, 1000);
+    /** @type {HTMLButtonElement} */
+    const btn = document.getElementById('start-btn');
+    btn.disabled = true;
 }
 
 window.onload = init;
+
+document.onkeydown = e => {
+    if (e.key === 'ArrowLeft') {
+        moveLeftBtnClick();
+    } else if (e.key === 'ArrowRight') {
+        moveRightBtnClick();
+    } else if (e.key === 'ArrowDown') {
+        moveToBottomBtnClick();
+    } else if (e.key === ' ') {
+        rotateBtnClick();
+    }
+}
