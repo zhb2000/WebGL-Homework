@@ -1,17 +1,19 @@
 /** @abstract */
 class AbstractTetromino {
     /**
-     * @param {Number} centerX 
-     * @param {Number} centerY 
-     * @param {Number} angle
+     * @param {number} centerX 
+     * @param {number} centerY 
+     * @param {number} angle
      */
     constructor(centerX, centerY, angle) {
         this.centerX = centerX;
         this.centerY = centerY;
         this.angle = angle;
         this.coords = [[0, 0], [0, 0], [0, 0], [0, 0]];
-        /** @type {Number[][][]} */
+        /** @type {number[][][]} */
         this.offsetsArray = [];
+        /** @type {number} */
+        this.colorIndex = null;
     }
 
     calcCoords() {
@@ -58,12 +60,13 @@ class AbstractTetromino {
 
 class ITetromino extends AbstractTetromino {
     /**
-     * @param {Number} centerX 
-     * @param {Number} centerY 
-     * @param {Number} angle
+     * @param {number} centerX 
+     * @param {number} centerY 
+     * @param {number} angle
      */
     constructor(centerX, centerY, angle) {
         super(centerX, centerY, angle);
+        this.colorIndex = 1;
         //[][x][][]
         this.offsetsArray.push([
             [0, -1], [0, 0], [0, 1], [0, 2]
@@ -80,12 +83,13 @@ class ITetromino extends AbstractTetromino {
 
 class OTetromino extends AbstractTetromino {
     /**
-     * @param {Number} centerX 
-     * @param {Number} centerY 
-     * @param {Number} angle
+     * @param {number} centerX 
+     * @param {number} centerY 
+     * @param {number} angle
      */
     constructor(centerX, centerY, angle) {
         super(centerX, centerY, angle);
+        this.colorIndex = 2;
         //[x][]
         //[][]
         this.offsetsArray.push([
@@ -96,12 +100,13 @@ class OTetromino extends AbstractTetromino {
 
 class TTetromino extends AbstractTetromino {
     /**
-     * @param {Number} centerX 
-     * @param {Number} centerY 
-     * @param {Number} angle
+     * @param {number} centerX 
+     * @param {number} centerY 
+     * @param {number} angle
      */
     constructor(centerX, centerY, angle) {
         super(centerX, centerY, angle);
+        this.colorIndex = 3;
         //  []
         //[][x][]
         this.offsetsArray.push([
@@ -129,12 +134,13 @@ class TTetromino extends AbstractTetromino {
 
 class JTetromino extends AbstractTetromino {
     /**
-     * @param {Number} centerX 
-     * @param {Number} centerY 
-     * @param {Number} angle
+     * @param {number} centerX 
+     * @param {number} centerY 
+     * @param {number} angle
      */
     constructor(centerX, centerY, angle) {
         super(centerX, centerY, angle);
+        this.colorIndex = 4;
         //[]x
         //[][][]
         this.offsetsArray.push([
@@ -162,12 +168,13 @@ class JTetromino extends AbstractTetromino {
 
 class LTetromino extends AbstractTetromino {
     /**
-     * @param {Number} centerX 
-     * @param {Number} centerY 
-     * @param {Number} angle
+     * @param {number} centerX 
+     * @param {number} centerY 
+     * @param {number} angle
      */
     constructor(centerX, centerY, angle) {
         super(centerX, centerY, angle);
+        this.colorIndex = 5;
         //   x[]
         //[][][]
         this.offsetsArray.push([
@@ -195,12 +202,13 @@ class LTetromino extends AbstractTetromino {
 
 class STetromino extends AbstractTetromino {
     /**
-     * @param {Number} centerX 
-     * @param {Number} centerY 
-     * @param {Number} angle
+     * @param {number} centerX 
+     * @param {number} centerY 
+     * @param {number} angle
      */
     constructor(centerX, centerY, angle) {
         super(centerX, centerY, angle);
+        this.colorIndex = 6;
         //  [x][]
         //[][]
         this.offsetsArray.push([
@@ -223,6 +231,7 @@ class ZTetromino extends AbstractTetromino {
      */
     constructor(centerX, centerY, angle) {
         super(centerX, centerY, angle);
+        this.colorIndex = 7;
         //[][x]
         //  [][]
         this.offsetsArray.push([

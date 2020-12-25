@@ -13,11 +13,14 @@
     </style>
 
     <script id="vertex-shader" type="x-shader/x-vertex">
-        attribute vec2 vPosition;
+        attribute vec2 vPosition; //顶点坐标
+        attribute vec4 vColor; //顶点颜色
+        varying vec4 fColor;
     
         void main()
         {
             gl_Position = vec4(vPosition, 0.0, 1.0);
+            fColor = vColor;
         }
     </script>
 
@@ -27,7 +30,7 @@
     
         void main()
         {
-            gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
+            gl_FragColor = fColor;
         }
     </script>
 
@@ -39,7 +42,7 @@
 </head>
 
 <body>
-    <canvas id="gl-canvas" width="500" height="500">
+    <canvas id="gl-canvas" width="600" height="600">
         Oops ... your browser doesn't support the HTML5 canvas element
     </canvas>
     <div>
